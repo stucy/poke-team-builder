@@ -1,0 +1,29 @@
+.SearchContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 50px;
+}
+
+.SearchContainer input{
+    padding: 10px 40px;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid black;
+}
+
+.Pokemon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #aeb1b5;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.Pokemon img {
+    width: 250px;
+    height: 250px;
+}

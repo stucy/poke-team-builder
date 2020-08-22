@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/stucy/poke-team-builder#readme",
   "dependencies": {
+    "axios": "^0.20.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
