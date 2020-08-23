@@ -2,7 +2,7 @@ import React from 'react';
 
 import './TeamMember.css';
 
-const TeamMember = ({selected, click, data}) => {
+const TeamMember = ({selected, click, data, openModal}) => {
     let classes = 'TeamMember ';
 
     selected ? classes += 'active' : null;
@@ -13,7 +13,8 @@ const TeamMember = ({selected, click, data}) => {
                 data.name != undefined ?
                 <img 
                 src={data.sprites.front_default} 
-                alt={data.name}/>
+                alt={data.name}
+                onDoubleClick={() => openModal(true)}/>
                 : null
             }            
         </div>

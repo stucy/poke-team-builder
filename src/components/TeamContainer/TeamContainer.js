@@ -4,7 +4,7 @@ import TeamMember from './TeamMember/TeamMember';
 
 import './TeamContainer.css';
 
-const TeamContainer = ({ team, selected, select }) => {
+const TeamContainer = ({ team, selected, select, openModal}) => {
     return (
         <div className="TeamContainer-outer">
             <div className="TeamContainer-inner">
@@ -12,11 +12,11 @@ const TeamContainer = ({ team, selected, select }) => {
                     <TeamMember 
                     key={index}
                     click={() => {
-                        console.log(index);
                         select(index)
                     }}
                     selected={selected == index}
-                    data={el}/>
+                    data={el}
+                    openModal={openModal}/>
                 ))}
             </div>
         </div>

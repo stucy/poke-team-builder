@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import TeamContainer from '../components/TeamContainer/TeamContainer';
 import PokemonSearch from '../components/PokemonSearch/PokemonSearch';
+import PokemonInfo from '../components/PokemonInfo/PokemonInfo';
 import Aux from '../hoc/Aux';
 import Modal from '../hoc/Modal/Modal';
 
@@ -44,17 +45,17 @@ const App = () => {
                 <TeamContainer 
                     team={team} 
                     selected={selectedSlot}
-                    select={setSelectedSlot}/>
+                    select={setSelectedSlot}
+                    openModal={setModal}/>
                 <PokemonSearch 
                     click={searchHandler}
                     change={setSearch}
                     pokemon={searchResult}
                     setMember={setMemberHandler}/>
             </div>
-            <button onClick={() => setModal(true)}>Open Modal</button>
+            {/* <button onClick={() => setModal(true)}>Open Modal</button> */}
             <Modal open={modal} close={setModal}>
-                <h1>Test Modal</h1>
-                <button onClick={() => setModal(false)}>Close Modal</button>
+                <PokemonInfo data={team[selectedSlot]}/>
             </Modal>
         </Aux>
     );
