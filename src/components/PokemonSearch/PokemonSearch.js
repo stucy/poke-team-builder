@@ -2,9 +2,20 @@ import React from 'react';
 
 import './PokemonSearch.css';
 
-const PokemonSearch = ({result, click, change}) =>{
+const PokemonSearch = ({click, change, pokemon, setMember}) =>{
     
-    const bool = result != null;
+    const bool = pokemon != null;
+    let el;
+
+    if(typeof(pokemon) == 'string'){
+        el = <h2>{pokemon}</h2>
+    }else if(bool){
+        el = <div className="Pokemon" onClick={setMember}>
+                <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+                <h1>{pokemon.name}</h1>
+            </div>
+    }
+    
     return (
         <div className="SearchContainer">
              <input type="text"  
@@ -12,16 +23,10 @@ const PokemonSearch = ({result, click, change}) =>{
                 onChange={(event) => change(event.target.value)}
                 onKeyPress={(event)=>{
                     if(event.key == 'Enter'){
-                        click(true);
+                        click();
                     }
                 }}/>
-            {bool ?
-                <div className="Pokemon">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" alt="" />
-                    <h1>Ditto</h1>
-                </div>
-                : null
-            }
+            {bool ? el : null}
         </div>
     )
 }

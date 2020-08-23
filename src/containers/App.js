@@ -1,24 +1,41 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios';
 
 import TeamContainer from '../components/TeamContainer/TeamContainer';
 import PokemonSearch from '../components/PokemonSearch/PokemonSearch';
 import Aux from '../hoc/Aux';
+import Modal from '../hoc/Modal/Modal';
 
 import './App.css';
 
 const emptyTeam = [{},{},{},{},{},{}]
+const url = "https://pokeapi.co/api/v2/pokemon/";
 
 const App = () => {
     const [team, setTeam] = useState(emptyTeam);
     const [selectedSlot, setSelectedSlot] = useState(null);
     const [search, setSearch] = useState('');
-    const [clicked, setClicked] = useState(false);
     const [searchResult, setSearchResult] = useState(null);
+    const [modal, setModal] = useState(false);
 
-    // useEffect(() => {
+    const searchHandler = () => {
+        axios.get(`${url}${search.toLocaleLowerCase()}`).then(res => {
+            // console.log(res);
+            setSearchResult(res.data)
+        })
+        .catch(err => {
+            console.log(err);
+            setSearchResult("No such pokemon!")
+        })
+    }
 
-    // }, [clicked])
+    const setMemberHandler = () => {
+        if(selectedSlot == null) return;
+
+        let newTeam = [ ...team ];
+        newTeam[selectedSlot] = searchResult;
+        setTeam(newTeam);
+    }
 
     return (
         <Aux>
@@ -29,10 +46,16 @@ const App = () => {
                     selected={selectedSlot}
                     select={setSelectedSlot}/>
                 <PokemonSearch 
-                    result={searchResult}
-                    click={setClicked}
-                    change={setSearch}/>
+                    click={searchHandler}
+                    change={setSearch}
+                    pokemon={searchResult}
+                    setMember={setMemberHandler}/>
             </div>
+            <button onClick={() => setModal(true)}>Open Modal</button>
+            <Modal open={modal} close={setModal}>
+                <h1>Test Modal</h1>
+                <button onClick={() => setModal(false)}>Close Modal</button>
+            </Modal>
         </Aux>
     );
 }

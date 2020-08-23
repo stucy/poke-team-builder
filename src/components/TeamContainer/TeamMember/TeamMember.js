@@ -12,8 +12,8 @@ const TeamMember = ({selected, click, data}) => {
             {
                 data.name != undefined ?
                 <img 
-                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" 
-                alt="Ditto"/>
+                src={data.sprites.front_default} 
+                alt={data.name}/>
                 : null
             }            
         </div>
