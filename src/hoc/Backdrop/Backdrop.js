@@ -10,6 +10,8 @@ const BackdropStyles = {
     zIndex: 1000
 }
 
-const Backdrop = ({close}) => <div style={BackdropStyles} onClick={() => close(false)}></div>;
+const Backdrop = ({close}) => <div style={BackdropStyles} onClick={() => (
+    close({open: false, data: null})
+)}></div>;
 
 export default Backdrop;

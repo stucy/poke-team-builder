@@ -6,10 +6,9 @@ import Aux from '../Aux';
 
 import './Modal.css';
 
-const Modal = ({children, data, open, close}) => {
+const Modal = ({children, open, close}) => {
     if (!open) return null;
 
-    console.log(open)
     return ReactDOM.createPortal(
        <Aux>
            <Backdrop close={close}/>

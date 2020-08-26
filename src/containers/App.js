@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 import TeamContainer from '../components/TeamContainer/TeamContainer';
 import PokemonSearch from '../components/PokemonSearch/PokemonSearch';
@@ -14,10 +15,9 @@ const url = "https://pokeapi.co/api/v2/pokemon/";
 
 const App = () => {
     const [team, setTeam] = useState(emptyTeam);
-    const [selectedSlot, setSelectedSlot] = useState(null);
     const [search, setSearch] = useState('');
     const [searchResult, setSearchResult] = useState(null);
-    const [modal, setModal] = useState(false);
+    const [modal, setModal] = useState({open: false, data: {}});
 
     const searchHandler = () => {
         axios.get(`${url}${search.toLocaleLowerCase()}`).then(res => {
@@ -30,32 +30,44 @@ const App = () => {
         })
     }
 
-    const setMemberHandler = () => {
-        if(selectedSlot == null) return;
-
-        let newTeam = [ ...team ];
-        newTeam[selectedSlot] = searchResult;
+    const onDragEnd = (result) => {
+        if (!result.destination) return;
+        const { destination } = result;
+        let newTeam = [...team];
+        newTeam[destination.droppableId] = searchResult;
         setTeam(newTeam);
+        // setSearchResult(null);
+        // setSearch('');
+    }
+
+    const openInfoModal = (pokemon) => {
+        setModal({
+            open: true,
+            data: pokemon
+        });
+
     }
 
     return (
         <Aux>
             <h1>Header</h1>
             <div className="container">
-                <TeamContainer 
-                    team={team} 
-                    selected={selectedSlot}
-                    select={setSelectedSlot}
-                    openModal={setModal}/>
-                <PokemonSearch 
-                    click={searchHandler}
-                    change={setSearch}
-                    pokemon={searchResult}
-                    setMember={setMemberHandler}/>
+                <DragDropContext onDragEnd={result => onDragEnd(result)}>
+                    <TeamContainer 
+                        team={team} 
+                        openModal={openInfoModal}
+                    />
+                    <PokemonSearch 
+                        click={searchHandler}
+                        change={setSearch}
+                        pokemon={searchResult}
+                        openModal={openInfoModal}
+                    />
+                </DragDropContext>
             </div>
             {/* <button onClick={() => setModal(true)}>Open Modal</button> */}
-            <Modal open={modal} close={setModal}>
-                <PokemonInfo data={team[selectedSlot]}/>
+            <Modal open={modal.open} close={setModal}>
+                <PokemonInfo data={modal.data}/>
             </Modal>
         </Aux>
     );

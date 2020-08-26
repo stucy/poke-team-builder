@@ -2,19 +2,16 @@ import React from 'react';
 
 import './TeamMember.css';
 
-const TeamMember = ({selected, click, data, openModal}) => {
-    let classes = 'TeamMember ';
-
-    selected ? classes += 'active' : null;
+const TeamMember = ({ click, data, openModal}) => {
 
     return(
-        <div className={classes} onClick={click}>
+        <div className="TeamMember" onClick={click}>
             {
                 data.name != undefined ?
                 <img 
                 src={data.sprites.front_default} 
                 alt={data.name}
-                onDoubleClick={() => openModal(true)}/>
+                onClick={() => openModal(data)}/>
                 : null
             }            
         </div>
