@@ -1,0 +1,14 @@
+.PokemonCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 50px;
+    border-radius: 20px;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+.PokemonCard .name {
+    text-transform: capitalize;
+}

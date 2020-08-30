@@ -1,0 +1,42 @@
+.pokedexContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 20px;
+    margin: 10px;
+}
+
+.Pokedex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.regionName {
+    text-transform: capitalize;
+    text-align: center;
+    font-size: 26px;
+    margin: 20px;
+}
+
+.PokedexPart {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(5, 1fr);
+    width: 100%;
+}
+
+.Region button{
+    margin: 10px;
+    padding: 20px 50px;
+    background-color: white;
+    border-radius: 20px;
+    border: 1px solid black;
+    outline: none;
+    text-transform: capitalize;
+}
+
+.Region button:hover{
+    cursor: pointer;
+    background-color: silver;
+}

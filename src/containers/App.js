@@ -5,6 +5,7 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import TeamContainer from '../components/TeamContainer/TeamContainer';
 import PokemonSearch from '../components/PokemonSearch/PokemonSearch';
 import PokemonInfo from '../components/PokemonInfo/PokemonInfo';
+import Pokedex from '../components/Pokedex/Pokedex';
 import Aux from '../hoc/Aux';
 import Modal from '../hoc/Modal/Modal';
 
@@ -51,7 +52,7 @@ const App = () => {
     return (
         <Aux>
             <h1>Header</h1>
-            <div className="container">
+            {/* <div className="container">
                 <DragDropContext onDragEnd={result => onDragEnd(result)}>
                     <TeamContainer 
                         team={team} 
@@ -64,8 +65,8 @@ const App = () => {
                         openModal={openInfoModal}
                     />
                 </DragDropContext>
-            </div>
-            {/* <button onClick={() => setModal(true)}>Open Modal</button> */}
+            </div> */}
+            <Pokedex />
             <Modal open={modal.open} close={setModal}>
                 <PokemonInfo data={modal.data}/>
             </Modal>
