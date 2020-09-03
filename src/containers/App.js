@@ -1,7 +1,5 @@
 import React from 'react'
-import {HashRouter as Router, Route, Switch} from 'react-router-dom';
-
-//Switch HashRouter to BrowserRouter when you host with express server
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import TeamBuilder from './TeamBuilder/TeamBuilder';
 import Pokedex from './Pokedex/Pokedex';
