@@ -1,10 +1,11 @@
 import React from 'react';
 
 import Aux from '../Aux';
+import Header from '../../components/Header/Header';
 
 const Layout = ({children}) => (
     <Aux>
-        <h1>Header</h1>
+        <Header />
         {children}
     </Aux>
 );

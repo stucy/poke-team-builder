@@ -1,0 +1,33 @@
+.Header {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.Navigation {
+    display: flex;
+    list-style-type: none;
+    margin-left: auto;
+}
+
+.Logo {
+    font-size: 30px;
+    padding: 10px;
+}
+
+.Navigation li {
+    margin: 5px;
+}
+
+.Navigation a {
+    text-decoration: none;
+    padding: 10px;
+    font-size: 18px;
+    color: black;
+    border-bottom: 1px solid black;
+}
+
+.Navigation li:hover a {
+    color: blue; 
+    border-bottom: 1px solid blue;
+    cursor: pointer;
+}
