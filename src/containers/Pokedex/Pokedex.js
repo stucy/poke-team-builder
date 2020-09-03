@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import PokemonCard from './PokemonCard/PokemonCard';
+import PokemonCard from '../../components/PokemonCard/PokemonCard';
 
 import './Pokedex.css';
 
@@ -15,6 +15,7 @@ const Pokedex = () =>{
     useEffect(() => {
         axios.get(url1).then(res => {
             // console.log(res);
+            res.data.results.pop();
             setRegions(res.data.results);
         })
         .catch(err => {

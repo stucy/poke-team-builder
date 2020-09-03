@@ -2,13 +2,8 @@ import React from 'react';
 
 import './PokemonCard.css';
 
-const Temp = {
-    entry_number: 1,
-    pokemon_species: {
-        name: "bulbasaur",
-        url: "https://pokeapi.co/api/v2/pokemon-species/1/"
-    }
-}
+const imgUrl1 = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/`;
+const imgUrl2 = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/`;
 
 const PokemonCard = ( {pokemon} ) => {
     
@@ -27,11 +22,12 @@ const PokemonCard = ( {pokemon} ) => {
 
     let startIndex = pokemon.pokemon_species.url.indexOf("pokemon-species");
     let imgNumber = pokemon.pokemon_species.url.substring(startIndex + 16, pokemon.pokemon_species.url.length - 1);
+    let imgNumber2 = `00${imgNumber}`.slice(-3);
     
     return(
         <div className="PokemonCard">
             <div>#{TransfromDigit(pokemon.entry_number)}</div>
-            <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${imgNumber}.png`} alt={pokemon.pokemon_species.name} />
+            <img src={`${imgUrl2}${imgNumber2}.png`} alt={pokemon.pokemon_species.name} />
             <div className="name">{pokemon.pokemon_species.name}</div>
         </div>
     )

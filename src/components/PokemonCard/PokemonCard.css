@@ -9,6 +9,10 @@
     margin: 10px;
 }
 
+.PokemonCard img {
+    width: 100px;
+}
+
 .PokemonCard .name {
     text-transform: capitalize;
 }
