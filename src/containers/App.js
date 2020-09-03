@@ -1,5 +1,7 @@
 import React from 'react'
-import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
+import {HashRouter as Router, Route, Switch} from 'react-router-dom';
+
+//Switch HashRouter to BrowserRouter when you host with express server
 
 import TeamBuilder from './TeamBuilder/TeamBuilder';
 import Pokedex from './Pokedex/Pokedex';
@@ -16,8 +18,8 @@ const App = () => {
             <Layout>
                 <Switch>
                     <Route exact path="/" component={Home}/>
-                    <Route exact path="/pokedex" component={Pokedex}/>
-                    <Route exact path="/team-builder" component={TeamBuilder}/>
+                    <Route path="/pokedex" component={Pokedex}/>
+                    <Route path="/team-builder" component={TeamBuilder}/>
                 </Switch>
             </Layout>
         </Router>
