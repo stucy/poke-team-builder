@@ -1,17 +1,67 @@
 .Header {
-    display: flex;
     margin-bottom: 10px;
+    position: relative;
+    height: 264px;
+    background: #AF3D3D url('../../images/header.svg') 0% 0% no-repeat;
+}
+
+.Logo {
+    height: 188px;
+    width: 188px;
+    border: 10px solid black;
+    background-color: blue;
+    border-radius: 50%;
+    box-sizing: border-box;
+    margin: 20px 30px;
+    position: relative;
+    display: inline-block;
+}
+
+.Logo img {
+    width: 264px;
+    height: 94px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.circleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 200px;
+    position: absolute;
+    top: 20px;
+    left: 250px;
+}
+
+.circle {
+    width: 38px;
+    height: 38px;
+    border: 3px solid #444;
+    border-radius: 50%;
+}
+
+.circle.red{
+    background-color: #D84848;
+}
+
+.circle.yellow{
+    background-color: #D8D848;
+}
+
+.circle.green {
+    background-color: #69D848;
 }
 
 .Navigation {
     display: flex;
     list-style-type: none;
     margin-left: auto;
-}
-
-.Logo {
-    font-size: 30px;
-    padding: 10px;
+    position: absolute;
+    bottom: 30px;
+    right: 0px;
 }
 
 .Navigation li {
@@ -20,14 +70,13 @@
 
 .Navigation a {
     text-decoration: none;
-    padding: 10px;
-    font-size: 18px;
-    color: black;
-    border-bottom: 1px solid black;
+    padding: 20px;
+    font-size: 26px;
+    text-align: center;
+    color: white;
+    border-left: 1px solid black;
 }
 
 .Navigation li:hover a {
-    color: blue; 
-    border-bottom: 1px solid blue;
     cursor: pointer;
 }

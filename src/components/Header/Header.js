@@ -4,9 +4,20 @@ import { Link } from 'react-router-dom';
 
 import './Header.css';
 
+import Logo from '../../images/PokeTB4x.png'
+
 const Header = () => (
     <div className="Header">
-        <div className="Logo">Logo</div>
+         <div className="logoContainer">
+            <div className="Logo">
+                <img src={Logo} alt="PokeTB Logo"/>
+            </div>
+            <div className="circleContainer">
+                <div className="circle red"></div>
+                <div className="circle yellow"></div>
+                <div className="circle green"></div>
+            </div>
+         </div>
         <ul className="Navigation">
             <li>
                 <Link to="/">Home</Link>
