@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import './Header.css';
 
-import Logo from '../../images/PokeTB4x.png'
+import Logo from '../../images/PokeTB.svg';
 
 const Header = ({show}) => {
 

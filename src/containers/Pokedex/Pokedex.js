@@ -13,7 +13,7 @@ const Pokedex = () =>{
     const [curRegion, setCurRegion] = useState(1);
     const [pokedex, setPokedex] = useState([]); 
 
-    let isInitialMount = useRef(true);
+    let isInitialMount = useRef(false);
 
     // useEffect(() => {
     //     axios.get(url1).then(res => {

@@ -1,12 +1,11 @@
 .Filter {
     display: flex;
     flex-direction: column;
-    transition: animation 1s ease-in, height 1s ease-in;
+    transition: all 0.4s cubic-bezier(0, 0.57, 0.26, 1.4);
     transform: translateY(-80%);
-    /* height: 0px; */
 
     position: absolute;
-    top: 264px;
+    top: 150px;
     left: 0;
     right: 0;
 }
@@ -37,46 +36,9 @@
 }
 
 .Filter.active{
-    animation: openFilter 1s;
-    animation-fill-mode: forwards;
-    height: auto;
+    transform: translateY(-10%);
 }
 
 .Filter.active .FilterControls {
     max-height: none;
-}
-
-.Filter.closed{
-    animation: closeFilter 1s;
-}
-
-@keyframes openFilter {
-    0%  {
-        transform: translateY(-80%); 
-        /* height: auto; */
-    }
-
-    60% { transform: translateY(-10%); }
-
-    70% { transform: translateY(-20%); }
-
-    80% { transform: translateY(0%); }
-
-    90% { transform: translateY(-10%); }
-
-    100% {
-        transform: translateY(0);
-    }
-}
-
-@keyframes closeFilter {
-    0%  {
-        transform: translateY(0);
-        /* height: auto; */
-    }
-
-    100% {
-        transform: translateY(-80%);
-        /* height: 0; */
-    }
 }
