@@ -3,16 +3,41 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px 50px;
+    padding: 20px 30px;
     border-radius: 20px;
-    border: 1px solid black;
-    margin: 10px;
+    border: 1px solid #707070;
+    margin: 2px;
 }
 
 .PokemonCard img {
     width: 100px;
 }
 
-.PokemonCard .name {
+.PokemonCard .info {
     text-transform: capitalize;
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 5px;
+    color: white;
+}
+
+.PokemonCard .info .name {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.PokemonCard .types {
+    display: flex;
+    width: 100%;
+}
+
+.PokemonCard .types div{
+    padding: 2px 20px;
+    border-radius: 17px;
+    margin-top: 5px;
+    color: white;
+    text-transform: capitalize;
+    background: #FFFFFF4D 0% 0% no-repeat padding-box;
+    margin: 5px 2px 0px;
 }

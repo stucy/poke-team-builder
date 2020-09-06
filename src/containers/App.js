@@ -13,7 +13,7 @@ const App = () => {
 
     return (
         <Router>
-            <Layout>
+            <Layout showFilters>
                 <Switch>
                     <Route exact path="/" component={Home}/>
                     <Route path="/pokedex" component={Pokedex}/>

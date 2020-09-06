@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
@@ -6,68 +6,91 @@ import PokemonCard from '../../components/PokemonCard/PokemonCard';
 import './Pokedex.css';
 
 const url1 = "https://pokeapi.co/api/v2/region";
+const url2 = "https://pokeapi.co/api/v2/pokemon";
 
 const Pokedex = () =>{
-    const [regions, setRegions] = useState([]);
+    // const [regions, setRegions] = useState([]);
     const [curRegion, setCurRegion] = useState(1);
     const [pokedex, setPokedex] = useState([]); 
 
-    useEffect(() => {
-        axios.get(url1).then(res => {
-            // console.log(res);
-            res.data.results.pop();
-            setRegions(res.data.results);
-        })
-        .catch(err => {
-            console.log(err);
-        })
-    },[]);
+    let isInitialMount = useRef(true);
+
+    // useEffect(() => {
+    //     axios.get(url1).then(res => {
+    //         // console.log(res);
+    //         res.data.results.pop();
+    //         setRegions(res.data.results);
+    //     })
+    //     .catch(err => {
+    //         console.log(err);
+    //     })
+    // },[]);
 
     useEffect(() => {
-        axios.get(`${url1}/${curRegion}`).then(res => {
-            const pokedexes = [...res.data.pokedexes];
-            let newPokedex = [];
-            let data = Promise.all(
-                pokedexes.map(el => {
-                    return axios(el.url);
+        if(isInitialMount.current){
+            isInitialMount.current = false;
+        }else{
+
+            axios.get(`${url1}/${curRegion}`).then(res => {
+                const pokedexes = [...res.data.pokedexes];
+                Promise.all(
+                    pokedexes.map(el => {
+                        return axios(el.url);
+                    })
+                ).then(res => {
+    
+                    Promise.all(res.map( ({data}) => {
+                        return Promise.all(data.pokemon_entries.map( el => {
+                            let startIndex = el.pokemon_species.url.indexOf("pokemon-species");
+                            let number = el.pokemon_species.url.substring(startIndex + 16, el.pokemon_species.url.length - 1);
+                            return axios(`${url2}/${number}`)
+                        }))
+                    })).then(res2 => {
+                        
+                        let data = res.map( ({data}, index) => {
+                            let obj =  {
+                                id: data.id,
+                                name: data.name,
+                                pokemon: res2[index],
+                            }
+                            return obj;
+                        });
+                        setPokedex(data);
+                        
+                    }).catch(err => {
+                        console.log(err);
+                    })
+    
+             
                 })
-            ).then(res => {
-
-                let data = res.map( ({data}) => (
-                    {
-                        id: data.id,
-                        name: data.name,
-                        pokemon: data.pokemon_entries,
-                    }
-                ));
-                setPokedex(data);
+                .catch(err =>{
+                    console.log(err);
+                })
             })
-            .catch(err =>{
+            .catch(err => {
                 console.log(err);
             })
-        })
-        .catch(err => {
-            console.log(err);
-        })
+
+        }
     }, [curRegion]);
 
-    const regionComp = regions.map((el, index) => {
-        return <button 
-                    key={index}
-                    onClick={() => setCurRegion(index + 1)}
-                >
-                    {el.name}
-                </button>
-    });
+    // const regionComp = regions.map((el, index) => {
+    //     return <button 
+    //                 key={index}
+    //                 onClick={() => setCurRegion(index + 1)}
+    //             >
+    //                 {el.name}
+    //             </button>
+    // });
 
     const PokemonCards = pokedex.map(el => {
         return  <div key={el.id}>
                     <div className="regionName" >{el.name}</div>
                     <div className="PokedexPart">
-                        {el.pokemon.map(el => (
+                        {el.pokemon.map( ({data}) => (
                             <PokemonCard 
-                                key={el.entry_number}
-                                pokemon={el}
+                                key={data.id}
+                                pokemon={data}
                             />
                         ))}
                     </div>
@@ -76,9 +99,9 @@ const Pokedex = () =>{
 
     return(
         <div className="pokedexContainer">
-            <div className="Region">
+            {/* <div className="Region">
                 {regionComp}
-            </div>
+            </div> */}
             <div className="Pokedex">
                 {PokemonCards}
             </div>

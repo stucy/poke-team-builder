@@ -3,7 +3,9 @@
     flex-direction: column;
     justify-content: space-around;
     padding: 20px;
-    margin: 10px;
+    width: 80%;
+    margin: 10px auto;
+    transition: all 1s ease-in-out
 }
 
 .Pokedex {
@@ -24,6 +26,7 @@
     grid-gap: 10px;
     grid-template-columns: repeat(5, 1fr);
     width: 100%;
+    justify-content: center;
 }
 
 .Region button{
