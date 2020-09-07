@@ -13,6 +13,8 @@ const Pokedex = () =>{
     const [curRegion, setCurRegion] = useState(1);
     const [pokedex, setPokedex] = useState([]); 
 
+    let limit = useRef(20);
+    let offset = useRef(0);
     let isInitialMount = useRef(false);
 
     // useEffect(() => {
@@ -40,7 +42,8 @@ const Pokedex = () =>{
                 ).then(res => {
     
                     Promise.all(res.map( ({data}) => {
-                        return Promise.all(data.pokemon_entries.map( el => {
+                        return Promise.all(data.pokemon_entries.slice(offset.current, limit.current).map( el => {
+                            console.log(el);
                             let startIndex = el.pokemon_species.url.indexOf("pokemon-species");
                             let number = el.pokemon_species.url.substring(startIndex + 16, el.pokemon_species.url.length - 1);
                             return axios(`${url2}/${number}`)

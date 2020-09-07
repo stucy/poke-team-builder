@@ -82,3 +82,9 @@
 .Navigation li:hover a {
     cursor: pointer;
 }
+
+@media(max-width: 1370px){
+    .Header {
+        background: #AF3D3D url('../../images/PokedexTabSmall.svg') 0% 0% no-repeat;
+    }
+}
