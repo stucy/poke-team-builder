@@ -3,8 +3,8 @@
     height: 150px;
     background: #AF3D3D url('../../images/PokedexTab.svg') 0% 0% no-repeat;
     z-index: 10;
-    background-size:contain;
-    background-position:top;
+    background-size: auto 150px;
+    background-position: left;
 }
 
 .Logo {
@@ -81,10 +81,4 @@
 
 .Navigation li:hover a {
     cursor: pointer;
-}
-
-@media(max-width: 1370px){
-    .Header {
-        background: #AF3D3D url('../../images/PokedexTabSmall.svg') 0% 0% no-repeat;
-    }
 }
