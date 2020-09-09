@@ -4,7 +4,7 @@ import './PokemonCard.css';
 
 const imgUrl = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/`;
 
-const PokemonCard = ( {pokemon} ) => {
+const PokemonCard = React.forwardRef(( {pokemon}, ref) => {
     
     const TransfromDigit = (number) =>{
         return number = `00${number}`.slice(-3);
@@ -17,7 +17,7 @@ const PokemonCard = ( {pokemon} ) => {
     ))
     
     return(
-        <div className={`PokemonCard ${pokemon.types[0].type.name}`}>
+        <div ref={ref} className={`PokemonCard ${pokemon.types[0].type.name}`}>
             
             <img src={`${imgUrl}${imgNumber}.png`} alt={pokemon.name} />
             <div className="info">
@@ -27,8 +27,9 @@ const PokemonCard = ( {pokemon} ) => {
             <div className="types">
                 {types}
             </div>
+            
         </div>
     )
-}
+})
 
 export default PokemonCard

@@ -5,7 +5,7 @@
     transform: translateY(-80%);
 
     position: absolute;
-    top: 150px;
+    top: 148px;
     left: 0;
     right: 0;
 }
@@ -23,9 +23,9 @@
     background-color: #3A3A3A;
     color: white;
     border-radius: 0px 0px 40px 40px;
-    width: 300px;
+    width: 200px;
     height: 40px;
-    font-size: 26px;
+    font-size: 18px;
     border: none;
     margin: 0 auto;
     text-align: center;

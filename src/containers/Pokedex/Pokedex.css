@@ -8,11 +8,11 @@
     transition: all 1s ease-in-out
 }
 
-.Pokedex {
+/* .Pokedex {
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
+} */
 
 .regionName {
     text-transform: capitalize;
@@ -21,10 +21,10 @@
     margin: 20px;
 }
 
-.PokedexPart {
+.Pokedex {
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     width: 100%;
     justify-content: center;
 }
