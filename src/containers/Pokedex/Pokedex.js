@@ -5,6 +5,8 @@ import PokemonCard from '../../components/PokemonCard/PokemonCard';
 
 import './Pokedex.css';
 
+import Loader from '../../images/Loader.svg';
+
 const url1 = "https://pokeapi.co/api/v2/region";
 const url2 = "https://pokeapi.co/api/v2/pokemon";
 
@@ -47,10 +49,7 @@ const Pokedex = () =>{
     // },[]);
 
     useEffect(() => {
-        if(isInitialMount.current){
-            isInitialMount.current = false;
-        }else{
-            // setLoading(true);
+            setLoading(true);
             axios.get(`${url1}/${curRegion}`).then(res => {
                 const pokedexes = [...res.data.pokedexes];
                 Promise.all(
@@ -91,7 +90,6 @@ const Pokedex = () =>{
                 console.log(err);
             })
 
-        }
     }, [curRegion, load]);
 
     // const regionComp = regions.map((el, index) => {
@@ -103,10 +101,7 @@ const Pokedex = () =>{
     //             </button>
     // });
 
-    const PokemonCards = pokemon.map( ({data}, index) => {
-        if(pokemon.length == index + 1) {
-            return <PokemonCard ref={lastEl} key={data.id} pokemon={data} />
-        }
+    const PokemonCards = pokemon.map( ({data} ) => {
         return  <PokemonCard key={data.id} pokemon={data} />
     })
 
@@ -118,7 +113,8 @@ const Pokedex = () =>{
             <div className="Pokedex">
                 {PokemonCards}
             </div>
-            {loading ? <div>Loading...</div> : null}
+            <hr ref={lastEl}/>
+            {loading ? <img src={Loader} id="loader" alt="Loader"/> : null}
         </div>
     )
 }

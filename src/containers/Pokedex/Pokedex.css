@@ -4,7 +4,7 @@
     justify-content: space-around;
     padding: 20px;
     width: 80%;
-    margin: 10px auto;
+    margin: 0px auto 10px;
     transition: all 1s ease-in-out
 }
 
@@ -42,4 +42,9 @@
 .Region button:hover{
     cursor: pointer;
     background-color: silver;
+}
+
+hr {
+    background-color: white;
+    border: none;
 }
