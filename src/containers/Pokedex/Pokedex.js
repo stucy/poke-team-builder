@@ -10,9 +10,15 @@ import './Pokedex.css';
 import Loader from '../../images/Loader.svg';
 
 const url1 = "https://pokeapi.co/api/v2/pokemon";
-const url2 = "https://pokeapi.co/api/v2/pokedex/1";
+const url2 = "https://pokeapi.co/api/v2/pokedex";
 const url3 = "https://pokeapi.co/api/v2/type/"
 const url4 = "https://pokeapi.co/api/v2"
+
+const pokedexType = [
+    'updated',
+    'extended',
+    'kalos'
+];
 
 const Pokedex = () =>{
 
@@ -21,7 +27,7 @@ const Pokedex = () =>{
     //Pokedex state
     const [pokedex, setPokedex] = useState([]);
     const [pokemon, setPokemon] = useState([]);
-    const [lazyLoad, setLoad] = useState({offset: 0, limit: 20});
+    const [lazyLoad, setLazyLoad] = useState({offset: 0, limit: 20});
     const [loading, setLoading] = useState(false);
 
     //Filter state
@@ -36,12 +42,14 @@ const Pokedex = () =>{
     //REFS
     const firstLoad = useRef(true);
     const observer = useRef(null);
+    const typesRef = useRef(null);
+    const optionsRef = useRef(null);
     const lastEl = useCallback(node => {
         if(loading) return;
         if(observer.current) observer.current.disconnect();
         observer.current = new IntersectionObserver(entries => {
             if(entries[0].isIntersecting){
-                setLoad(prev => {
+                setLazyLoad(prev => {
                     return {
                         offset: prev.offset + 20,
                         limit: prev.limit + 20
@@ -53,20 +61,106 @@ const Pokedex = () =>{
     }, [loading]);
 
     //function handlers
-    const selectTypeHandler = (node) => {
-        console.log(node);
+    const toggleTypeHandler = (node) => {
+        node.classList.toggle('active');
+        let type = node.textContent;
+        let index = selectedTypes.indexOf(type);
+        let newSelectedTypes = selectedTypes;
+        if(index > -1){
+            newSelectedTypes.splice(index, -1);
+        }
+        else{
+            newSelectedTypes.push(type);
+        }
+
+        setSelectedTypes(newSelectedTypes);
     };
 
-    const selectOptionHandler = (node) => {
-        console.log(node);
+    const toggleOptionHandler = (node) => {
+        if(node.nodeName == 'INPUT'){
+            let option = node.value;
+            let index = selectedOptions.indexOf(option);
+            let newSelectedOptions = selectedOptions;
+            if(index > -1){
+                newSelectedOptions.splice(index, -1);
+            }
+            else{
+                newSelectedOptions.push(option);
+            }
+
+            newSelectedOptions.sort();
+
+            setSelectedOption(newSelectedOptions);
+        }
     }
 
     const applyFilterHandler = () => {
-
+        setPokedex([]);
+        setPokemon([]);
+        setLoading(true);
+        setFilterActive('');
+        
+        Promise.all(selectedOptions.map( el => {
+            return axios(`${url4}/${pickedFilter}/${el}`);
+        }))
+        .then( res => {
+            if(pickedFilter == 'generation'){
+                let data = res.map( ({data}) => data.pokemon_species).flat();
+                setPokedex(data);
+                setLazyLoad({offset: 0, limit: 20})
+            }
+            else{
+                Promise.all(res.map(el => {
+                    let promises = [];
+                    let dexes = el.data.pokedexes;
+                    for(let i = 0; i < dexes.length; i++){
+                        if( dexes[i].name.includes(pokedexType[0]) ||
+                            dexes[i].name.includes(pokedexType[1]) ||
+                            dexes[i].name.includes(pokedexType[2])
+                        ){
+                            promises.push(axios(dexes[i].url));
+                        }
+                    }
+                    return Promise.all(promises)
+                }))
+                .then(res => {
+                    let data = res.flat().map(el => {
+                        return el.data.pokemon_entries.map(el => el.pokemon_species);
+                    }).flat()
+                    setPokedex(data);
+                    setLazyLoad({offset: 0, limit: 20})
+                })
+                .catch(err => console.log(err));
+            }
+            
+        })
+        .catch(err => console.log(err));
     };
 
     const resetFilterHandler = () => {
+        setPokemon([]);
+        setFilterActive('');
+        setLoading(true);
 
+        let i;
+        for(i = 0; i < typesRef.current.children.length; i++){
+            typesRef.current.children[i].classList.remove('active');
+        }
+
+        for(i = 0; i < optionsRef.current.children.length; i++){
+            optionsRef.current.children[i].children[0].checked = false;
+        }
+
+        setSelectedOption([]);
+        setSelectedTypes([]);
+
+        axios.get(`${url2}/1`).then(res => {
+
+            const pokemon = res.data.pokemon_entries.map(el => el.pokemon_species);
+            setPokedex(pokemon);
+            setLazyLoad({offset: 0, limit: 20})
+        })
+        .catch(err => console.log(err));
     }
 
     //Get data on initial load
@@ -74,14 +168,14 @@ const Pokedex = () =>{
         setLoading(true);
 
         //Gets national pokedex
-        axios.get(url2).then(res => {
+        axios.get(`${url2}/1`).then(res => {
 
-            const pokemon = res.data.pokemon_entries;
+            const pokemon = res.data.pokemon_entries.map(el => el.pokemon_species);
             setPokedex(pokemon);
 
             Promise.all(pokemon.slice(lazyLoad.offset, lazyLoad.limit).map( el => {
-                let startIndex = el.pokemon_species.url.indexOf("pokemon-species");
-                let number = el.pokemon_species.url.substring(startIndex + 16, el.pokemon_species.url.length - 1);
+                let startIndex = el.url.indexOf("pokemon-species");
+                let number = el.url.substring(startIndex + 16, el.url.length - 1);
                 return axios(`${url1}/${number}`)
             }))
             .then(res => {
@@ -116,8 +210,8 @@ const Pokedex = () =>{
         
         setLoading(true);
         Promise.all(pokedex.slice(lazyLoad.offset, lazyLoad.limit).map( el => {
-            let startIndex = el.pokemon_species.url.indexOf("pokemon-species");
-            let number = el.pokemon_species.url.substring(startIndex + 16, el.pokemon_species.url.length - 1);
+            let startIndex = el.url.indexOf("pokemon-species");
+            let number = el.url.substring(startIndex + 16, el.url.length - 1);
             return axios(`${url1}/${number}`)
         }))
         .then(res => {
@@ -133,11 +227,12 @@ const Pokedex = () =>{
     useEffect(() => {
         if(firstLoad.current) return;
 
-        console.log(pickedFilter)
-
         axios(`${url4}/${pickedFilter}`).then(res => {
-            console.log(res.data.results)
             setFilterOptions(res.data.results);
+            for(let i = 0; i < optionsRef.current.children.length; i++){
+                optionsRef.current.children[i].children[0].checked = false;
+            }
+            setSelectedOption([]);
         })
         .catch(err => console.log(err));
 
@@ -155,7 +250,12 @@ const Pokedex = () =>{
                 types={types}
                 filterOptions={filterOptions}
                 changeFilter={setPickedFilter}
-                selectType={selectTypeHandler}
+                toggleType={toggleTypeHandler}
+                toggleOption={toggleOptionHandler}
+                reset={resetFilterHandler}
+                apply={applyFilterHandler}
+                typesRef={typesRef}
+                optionsRef={optionsRef}
             />
             <div className="pokedexContainer">
                 <div className="Pokedex">

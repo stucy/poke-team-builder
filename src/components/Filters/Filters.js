@@ -2,10 +2,10 @@ import React from 'react'
 
 import './Filters.css';
 
-const Filters = ({active, click, types, filterOptions, changeFilter, selectType}) => {
+const Filters = ({active, click, types, filterOptions, changeFilter, apply, reset, toggleOption, toggleType, optionsRef, typesRef}) => {
 
     const typesEls = types.map( (el, index) => (
-        <button className={`${el.name} filterType`} key={index} onClick={(e) => selectType(e.target)} >{el.name}</button>
+        <button className={`${el.name} filterType`} key={index} onClick={(e) => toggleType(e.target)} >{el.name}</button>
     ));
 
     const options = filterOptions.map( (el, index) => {
@@ -20,9 +20,9 @@ const Filters = ({active, click, types, filterOptions, changeFilter, selectType}
         }
 
         return (
-            <label className="customInputContainer" key={index}>
+            <label className="customInputContainer" key={index} onClick={(e) => toggleOption(e.target)}>
                 {name}
-                <input type="checkbox" value={el.name}/>
+                <input type="checkbox" value={index + 1}/>
                 <span className="checkmark"></span>
             </label>
         );
@@ -32,7 +32,7 @@ const Filters = ({active, click, types, filterOptions, changeFilter, selectType}
     return (
         <div className={`Filter ${active}`}>
             <div className="FilterControls">
-                <div className="filterTypes">
+                <div className="filterTypes" ref={typesRef}>
                     {typesEls}
                 </div>
                 <div className="filterChoice">
@@ -57,12 +57,12 @@ const Filters = ({active, click, types, filterOptions, changeFilter, selectType}
                         <span className="checkmark radio"></span>
                     </label>
                 </div>
-                <div className="filterOptions">
+                <div className="filterOptions" ref={optionsRef}>
                     {options}
                 </div>
                 <div className="filterButtons">
-                    <button>Reset</button>
-                    <button>Filter</button>
+                    <button onClick={reset}>Reset</button>
+                    <button onClick={apply}>Filter</button>
                 </div>
             </div>
             <button className="FilterBtn" onClick={() => {
