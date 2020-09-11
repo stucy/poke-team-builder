@@ -5,13 +5,10 @@ import Header from '../../components/Header/Header';
 import Filters from '../../components/Filters/Filters';
 
 const Layout = ({children}) => {
-    const [showFilter, setShowFilter] = useState(false);
-    const [filterActive, setFilterActive] = useState('')
 
     return (
             <Aux>
-                <Header show={setShowFilter}/>
-                {showFilter ? <Filters active={filterActive} click={setFilterActive}/> : null}
+                <Header/>
                 {children}
             </Aux>
         )

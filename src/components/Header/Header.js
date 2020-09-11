@@ -6,12 +6,7 @@ import './Header.css';
 
 import Logo from '../../images/PokeTB.svg';
 
-const Header = ({show}) => {
-
-    useEffect(()=>{
-        let location = window.location.pathname;
-        if(location == '/pokedex') show(true);
-    }, [])
+const Header = () => {
     
     return (
         <div className="Header">
@@ -26,13 +21,13 @@ const Header = ({show}) => {
                 </div>
             </div>
             <ul className="Navigation">
-                <li onClick={() => show(false)}>
+                <li>
                     <Link to="/">Home</Link>
                 </li>
-                <li onClick={() => show(true)}>
+                <li>
                     <Link to="/pokedex">Pokedex</Link>
                 </li>
-                <li onClick={() => show(false)}>
+                <li>
                     <Link to="/team-builder">Team Builder</Link>
                 </li>
             </ul>

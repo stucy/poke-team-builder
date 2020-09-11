@@ -3,19 +3,19 @@
     flex-direction: column;
     transition: all 0.4s cubic-bezier(0, 0.57, 0.26, 1.4);
     transform: translateY(-80%);
+    border-radius: 0 0 10px 10px;
 
     position: absolute;
-    top: 148px;
+    top: 140px;
     left: 0;
     right: 0;
 }
 
 .FilterControls{
     background-color: #3A3A3A;
-    height: 300px;
-    max-height: 200px;
+    min-height: 270px;
     color: white;
-    text-align: center;
+    padding: 0px 150px;
 }
 
 .FilterBtn {
@@ -29,16 +29,127 @@
     border: none;
     margin: 0 auto;
     text-align: center;
+    cursor: pointer;
 }
 
-.FilterBtn:hover {
+.filterTypes {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    padding-top: 60px;
+}
+
+.filterType {
+    border-radius: 20px;
+    padding: 5px 20px;
+    border: none;
+    outline: none;
+    color: white;
+    text-transform: capitalize;
+    text-align: center;
+    font-weight: 600;
     cursor: pointer;
+}
+
+.filterType.active{
+    border: 2px solid white;
+}
+
+.filterChoice {
+    margin-top: 20px;
+    display: flex;
+    font-size: 20px;
+}
+
+.filterOptions {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.customInputContainer {
+    display: inline-block;
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    font-size: 18px;
+    user-select: none;
+    margin: 5px;
+    text-transform: capitalize;
+}
+
+.customInputContainer input{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    height: 16px;
+    width: 16px;
+    border-radius: 4px;
+    border: 1px solid #9E9E9E;
+}
+
+.radio {
+    border-radius: 50%;
+}
+
+.checkmark::after{
+    content: '';
+    position: absolute;
+    display: none;
+}
+
+.customInputContainer input:checked ~ .checkmark::after{
+    display: block;
+}
+
+.customInputContainer .checkmark::after{
+    top: 2px;
+    left: 2px;
+    width: 12px;
+    height: 12px;
+    background-color: #9E9E9E;
+}
+
+.customInputContainer .radio.checkmark::after{
+    border-radius: 50%;
+}
+
+.filterButtons{
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    bottom: 55px;
+    right: 20px;
+}
+
+.filterButtons button {
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    background-color: #1E1E1E;
+    color: white;
+    font-size: 16px;
+    padding: 5px 20px;
+    text-align: right;
+    margin: 5px;
+}
+
+.square {
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+    background-color: white;
+    content: '';
+    display: inline-block;
 }
 
 .Filter.active{
     transform: translateY(-10%);
-}
-
-.Filter.active .FilterControls {
-    max-height: none;
+    top: 150px;
 }
