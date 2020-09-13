@@ -37,6 +37,7 @@ const Pokedex = () =>{
     const [filterOptions, setFilterOptions] = useState([]);
     const [selectedTypes, setSelectedTypes] = useState([]);
     const [selectedOptions, setSelectedOption] = useState([]);
+    const [filterApplied, setFilterApplied] = useState([]);
 
 
     //REFS
@@ -97,8 +98,8 @@ const Pokedex = () =>{
     const applyFilterHandler = () => {
         setPokedex([]);
         setPokemon([]);
-        setLoading(true);
         setFilterActive('');
+        setFilterApplied(true);
         
         Promise.all(selectedOptions.map( el => {
             return axios(`${url4}/${pickedFilter}/${el}`);
@@ -141,6 +142,7 @@ const Pokedex = () =>{
         setPokemon([]);
         setFilterActive('');
         setLoading(true);
+        setFilterApplied(false);
 
         let i;
         for(i = 0; i < typesRef.current.children.length; i++){
@@ -179,6 +181,7 @@ const Pokedex = () =>{
                 return axios(`${url1}/${number}`)
             }))
             .then(res => {
+                
                 setPokemon(res);
                 setLoading(false);
             })
@@ -215,6 +218,22 @@ const Pokedex = () =>{
             return axios(`${url1}/${number}`)
         }))
         .then(res => {
+
+            console.log(filterApplied);
+            console.log(selectedTypes);
+
+            if(filterApplied){
+                res = res.filter( ({data}) => {
+                    let bool = false;
+                    data.types.forEach(el => {
+                        if(selectedTypes.includes(el.type.name)){
+                            bool = true;
+                        }
+                    });
+                    return bool;
+                });
+            }
+
             setPokemon(prev => {
                 return [...prev, ...res];
             });
