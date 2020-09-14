@@ -8,12 +8,6 @@
     transition: all 1s ease-in-out
 }
 
-/* .Pokedex {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-} */
-
 .regionName {
     text-transform: capitalize;
     text-align: center;

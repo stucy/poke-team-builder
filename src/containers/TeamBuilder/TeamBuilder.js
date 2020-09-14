@@ -8,6 +8,8 @@ import Aux from '../../hoc/Aux';
 import Modal from '../../hoc/Modal/Modal';
 import PokemonInfo from '../../components/PokemonInfo/PokemonInfo';
 
+import './TeamBuilder.css';
+
 const emptyTeam = [{},{},{},{},{},{}]
 const url = "https://pokeapi.co/api/v2/pokemon/";
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './PokemonCard.css';
 
@@ -17,18 +18,20 @@ const PokemonCard = React.forwardRef(( {pokemon}, ref) => {
     ))
     
     return(
-        <div ref={ref} className={`PokemonCard ${pokemon.types[0].type.name}`}>
+        <Link to={`/pokemon/${pokemon.name}`}>
+            <div ref={ref} className={`PokemonCard ${pokemon.types[0].type.name}`}>
             
-            <img src={`${imgUrl}${imgNumber}.png`} alt={pokemon.name} />
-            <div className="info">
-                <div className="name">{pokemon.name}</div>
-                <div>#{TransfromDigit(pokemon.id)}</div>
+                <img src={`${imgUrl}${imgNumber}.png`} alt={pokemon.name} />
+                <div className="info">
+                    <div className="name">{pokemon.name}</div>
+                    <div>#{TransfromDigit(pokemon.id)}</div>
+                </div>
+                <div className="types">
+                    {types}
+                </div>
+                
             </div>
-            <div className="types">
-                {types}
-            </div>
-            
-        </div>
+        </Link>
     )
 })
 

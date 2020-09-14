@@ -2,16 +2,3 @@
     margin: 0px;
     padding: 0px;
 }
-
-#loader{
-    width: 50px;
-    animation-duration: 1s;
-    animation-name: loader;
-    animation-iteration-count: infinite;
-    animation-direction: normal;
-    animation-timing-function: cubic-bezier(0.45, 0.05, 0.55, 0.95);
-    margin: 20px auto;
-}
-@keyframes loader {
-    100% {transform: rotate(360deg);}
-}

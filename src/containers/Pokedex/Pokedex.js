@@ -4,10 +4,9 @@ import axios from 'axios';
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
 import Filters from '../../components/Filters/Filters';
 import Aux from '../../hoc/Aux';
+import Loader from '../../components/Loader/Loader';
 
 import './Pokedex.css';
-
-import Loader from '../../images/Loader.svg';
 
 const url1 = "https://pokeapi.co/api/v2/pokemon";
 const url2 = "https://pokeapi.co/api/v2/pokedex";
@@ -37,7 +36,7 @@ const Pokedex = () =>{
     const [filterOptions, setFilterOptions] = useState([]);
     const [selectedTypes, setSelectedTypes] = useState([]);
     const [selectedOptions, setSelectedOption] = useState([]);
-    const [filterApplied, setFilterApplied] = useState([]);
+    const [filterApplied, setFilterApplied] = useState(false);
 
 
     //REFS
@@ -167,6 +166,8 @@ const Pokedex = () =>{
 
     //Get data on initial load
     useEffect(() => {
+        if(!firstLoad.current) return;
+         
         setLoading(true);
 
         //Gets national pokedex
@@ -219,8 +220,8 @@ const Pokedex = () =>{
         }))
         .then(res => {
 
-            console.log(filterApplied);
-            console.log(selectedTypes);
+            // console.log(filterApplied);
+            // console.log(selectedTypes);
 
             if(filterApplied){
                 res = res.filter( ({data}) => {
@@ -281,7 +282,7 @@ const Pokedex = () =>{
                     {PokemonCards}
                 </div>
                 <hr ref={lastEl}/>
-                {loading ? <img src={Loader} id="loader" alt="Loader"/> : null}
+                {loading ? <Loader /> : null}
             </div>
         </Aux>
     )
