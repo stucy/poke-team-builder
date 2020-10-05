@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './ProductInfo.css';
 
-const ProductInfo = ({img, title, text, orientation}) => {
+const ProductInfo = ({img, title, text, orientation, to}) => {
     
     let content = orientation == "left" ? (
         <>
@@ -10,7 +11,7 @@ const ProductInfo = ({img, title, text, orientation}) => {
             <div className="ProductInfoText">
                 <h1 className="ProductTitle">{title}</h1>
                 <p className="ProductText">{text}</p>
-                <button className="ProductButton">View</button>
+                <Link to={to} className="ProductButton">View</Link>
             </div>
         </>
     ) :
@@ -20,7 +21,7 @@ const ProductInfo = ({img, title, text, orientation}) => {
             <div className="ProductInfoText">
                 <h1 className="ProductTitle">{title}</h1>
                 <p className="ProductText">{text}</p>
-                <button className="ProductButton">View</button>
+                <Link to={to} className="ProductButton">View</Link>
             </div>
             <img src={img} />
         </>
