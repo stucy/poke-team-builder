@@ -67,11 +67,14 @@ const Pokedex = () =>{
         let index = selectedTypes.indexOf(type);
         let newSelectedTypes = selectedTypes;
         if(index > -1){
-            newSelectedTypes.splice(index, -1);
+            newSelectedTypes.splice(index, 1);
         }
         else{
             newSelectedTypes.push(type);
         }
+
+
+        console.log(newSelectedTypes);
 
         setSelectedTypes(newSelectedTypes);
     };
@@ -82,7 +85,7 @@ const Pokedex = () =>{
             let index = selectedOptions.indexOf(option);
             let newSelectedOptions = selectedOptions;
             if(index > -1){
-                newSelectedOptions.splice(index, -1);
+                newSelectedOptions.splice(index, 1);
             }
             else{
                 newSelectedOptions.push(option);
@@ -220,8 +223,8 @@ const Pokedex = () =>{
         }))
         .then(res => {
 
-            console.log(filterApplied);
-            console.log(selectedTypes);
+            // console.log(filterApplied);
+            // console.log(selectedTypes);
 
             if(filterApplied && selectedTypes.length > 0){
                 res = res.filter( ({data}) => {
