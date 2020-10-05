@@ -220,10 +220,10 @@ const Pokedex = () =>{
         }))
         .then(res => {
 
-            // console.log(filterApplied);
-            // console.log(selectedTypes);
+            console.log(filterApplied);
+            console.log(selectedTypes);
 
-            if(filterApplied){
+            if(filterApplied && selectedTypes.length > 0){
                 res = res.filter( ({data}) => {
                     let bool = false;
                     data.types.forEach(el => {
