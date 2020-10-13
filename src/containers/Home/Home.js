@@ -7,6 +7,7 @@ import './Home.css';
 
 import ProductImg1 from '../../images/product1.png';
 
+//Hardcoded data for the components
 const product1 = {
     img: ProductImg1,
     title: 'Pokedex',
