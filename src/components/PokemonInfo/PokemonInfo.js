@@ -3,8 +3,9 @@ import React from 'react';
 import './PokemonInfo.css';
 
 const PokemonInfo = ({ data }) => {
-    console.log(data);
+    // console.log(data);
 
+    //We loop through the types of the pokemon and create the element
     const types = data.types.map(el => (
         <div className={`type ${el.type.name}`} key={el.type.name}>{el.type.name}</div>
     ))
