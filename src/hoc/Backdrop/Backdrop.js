@@ -1,5 +1,6 @@
 import React from 'react';
 
+//Backdrop styles
 const BackdropStyles = {
     position: 'fixed',
     top: 0,

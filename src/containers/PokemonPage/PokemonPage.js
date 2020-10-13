@@ -21,7 +21,7 @@ const PokemonPage = () => {
     const [pokeData, setPokeData] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    //GET params
+    //GET params from the url
     const { name } = useParams();
 
     //Get pokemon data
