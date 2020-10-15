@@ -2,6 +2,59 @@
     background-color: white;
     padding: 15px 40px;
     width: 200px;
+    height: 18px;
     border-radius: 25px;
     margin-bottom: 10px;
+    position: relative;
+    display: flex;
+}
+
+.TeamMember:hover{
+    cursor: pointer;
+}
+
+.TeamMember.active{
+    opacity: 0.8;
+}
+
+.TeamMember.active::before{
+    content: "+";
+    font-size: 50px;
+    color: #D84848;
+    position: absolute;
+    font-weight: 900;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.TeamMember.empty{
+    opacity: 0.6;
+}
+
+.TeamMember.empty:hover{
+    cursor: default;
+}
+
+.MemberImg {
+    width: 15%;
+    position: absolute;
+    top: 5px;
+    left: 10px;
+}
+
+.MemberInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 20px;
+}
+
+.PokemonHealthBar {
+    width: 200px;
+    height: 5px;
+    display: inline-block;
+    border: 3px solid #90C88C;
+    border-radius: 20px;
 }
