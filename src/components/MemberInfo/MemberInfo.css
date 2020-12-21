@@ -1,0 +1,33 @@
+.MemberInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.InfoImg {
+    width: 150px;
+    z-index: 2;
+}
+
+.infoContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.dataContainer{
+    width: 300px;
+    height: 160px;
+    background-color: #D84848;
+    padding: 25px;
+    border-radius: 30px;
+    box-shadow: 0px 3px 6px #00000029;
+}
+
+.infoTitle{
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+}

@@ -18,7 +18,7 @@ const TeamMember = ({data}) => {
                 
                 <Aux>
                     <img className="MemberImg" src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png" />
-                    <div className="MemberInfo">
+                    <div className="TeamMemberInfo">
                         <span>Pikachu</span>
                         <span className="PokemonHealthBar"></span>
                         <span>35/35</span>
