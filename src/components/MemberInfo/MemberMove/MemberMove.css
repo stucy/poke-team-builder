@@ -1,0 +1,55 @@
+.MemberMove {
+    background-color: white;
+    padding: 15px 40px;
+    width: 200px;
+    height: 12px;
+    border-radius: 25px;
+    margin-bottom: 10px;
+    position: relative;
+    display: flex;
+}
+
+.MemberMove:hover{
+    cursor: pointer;
+}
+
+.MemberMove.active{
+    opacity: 0.8;
+}
+
+.MemberMove.active::before{
+    content: "+";
+    font-size: 50px;
+    color: #BBEDED;
+    position: absolute;
+    font-weight: 900;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.MemberMove.empty{
+    opacity: 0.6;
+}
+
+.MemberMove.empty:hover{
+    cursor: default;
+}
+
+.MemberMove.move{
+    color: white;
+    font-size: 22px;
+    align-items: center;
+}
+
+.moveName {
+    text-align: center;
+    width: 100%;
+}
+
+.movePP{
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}

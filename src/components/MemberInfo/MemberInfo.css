@@ -14,6 +14,7 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    width: 500px;
 }
 
 .infoContainer button {
@@ -21,7 +22,7 @@
     color: white;
     background: none;
     border: none;
-    padding: 20px;
+    /* padding: 20px; */
     cursor: pointer;
     outline: none;
 }
@@ -47,6 +48,7 @@
     font-size: 18px;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
 }
 
 .stat > * {
@@ -55,6 +57,16 @@
 
 .statTitle {
     margin-right: 15px;
+    text-align: right;
+    text-transform: capitalize;
+    width: 50px;
+}
+
+.typesContainer .dataContainer{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    justify-content: space-between;
 }
 
 .statLine{
@@ -62,3 +74,64 @@
     height: 0;
     border-radius: 20px;
 }
+
+.rec-pagination{
+    display: none !important;
+}
+
+.lgksPe,
+.iLquPE{
+    box-shadow: none !important;
+}
+
+.lgksPe:hover,
+.iLquPE:hover{
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.lgksPe:active,
+.iLquPE:active{
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.lgksPe:focus,
+.iLquPE:focus{
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.tXlBS:focus,
+.galrjd:focus,
+.ewJlEB:focus{
+    outline: none !important;
+    border: none !important;
+}
+
+.typeInfo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.typeInfo .type{
+    padding: 4px 30px;
+    border-radius: 20px;
+    flex-wrap: nowrap;
+    position: relative;
+}
+
+.typeDmg{    
+    background-color: white;
+    border-radius: 50%;
+    padding: 7px;
+    color: black;
+    align-self: flex-end;
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    font-size: 10px;
+}
+

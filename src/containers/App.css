@@ -3,6 +3,10 @@
     padding: 0px;
 }
 
+:focus{
+    outline: none !important;
+}
+
 html, body{
     height: 100%;
 }
