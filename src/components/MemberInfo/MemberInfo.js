@@ -9,14 +9,20 @@ const MemberInfo = ({data}) => {
         <div className="MemberInfo">
             <img className="InfoImg" src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png" />
             <div className="infoContainer" style={{zIndex: 2}}>
-                <button> Previouse </button>
+                <button> &lsaquo; </button>
 
-                <div>
+                <div className="statsContainer">
                     <h1 className="infoTitle">Stats</h1>
-                    <div className="dataContainer">Container 1</div>
+                    <div className="dataContainer">
+                        <div className="stat">
+                            <div className="statTitle">HP</div>
+                            <div className="statNumber">35</div>
+                            <div className="statLine" style={{width: (35/180) * 100}}></div>
+                        </div>
+                    </div>
                 </div>
 
-                <button> Next </button>
+                <button> &rsaquo; </button>
             </div>
         </div>
     );

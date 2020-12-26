@@ -16,6 +16,16 @@
     justify-content: space-evenly;
 }
 
+.infoContainer button {
+    font-size: 80px;
+    color: white;
+    background: none;
+    border: none;
+    padding: 20px;
+    cursor: pointer;
+    outline: none;
+}
+
 .dataContainer{
     width: 300px;
     height: 160px;
@@ -30,4 +40,25 @@
     color: white;
     font-weight: bold;
     padding: 10px;
+}
+
+.stat{
+    color: white;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.stat > * {
+    margin: 5px;
+}
+
+.statTitle {
+    margin-right: 15px;
+}
+
+.statLine{
+    border: 4px solid white;
+    height: 0;
+    border-radius: 20px;
 }
