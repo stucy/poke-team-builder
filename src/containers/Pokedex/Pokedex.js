@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
 import Filters from '../../components/Filters/Filters';
@@ -319,7 +320,11 @@ const Pokedex = () =>{
 
     //Creates a card for each pokemon that has been fetched
     const PokemonCards = pokemon.map( ({data} ) => {
-        return  <PokemonCard key={data.id} pokemon={data} />
+        return(
+            <Link to={`/pokemon/${data.name}`}>
+                <PokemonCard key={data.id} pokemon={data} />
+            </Link>
+        )
     });
 
     return(

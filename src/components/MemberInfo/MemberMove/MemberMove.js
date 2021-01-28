@@ -5,7 +5,7 @@ import Aux from "../../../hoc/Aux";
 import './MemberMove.css';
 
 const TeamMember = ({data}) => {
-    console.log(data);
+    // console.log(data);
 
     // data.name = null;
 

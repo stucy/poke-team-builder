@@ -16,6 +16,7 @@ const Modal = ({children, open, close}) => {
        <Aux>
            <Backdrop close={close}/>
            <div className="Modal">
+               <span className="close-modal" onClick={() => close()}>X</span>
                 {children}
             </div>
        </Aux>,

@@ -58,3 +58,11 @@
     border: 3px solid #90C88C;
     border-radius: 20px;
 }
+
+.removeMember{
+    color: red;
+    cursor: pointer;
+    position: absolute;
+    top: 2px;
+    right: 15px;
+}

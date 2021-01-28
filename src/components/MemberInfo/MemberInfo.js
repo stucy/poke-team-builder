@@ -6,7 +6,7 @@ import MemberMove from './MemberMove/MemberMove';
 import './MemberInfo.css';
 
 const MemberInfo = ({data}) => {
-    console.log(data);
+    // console.log(data);
 
     return (
         <div className="MemberInfo">

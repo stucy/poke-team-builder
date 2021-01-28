@@ -1,11 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import './PokemonCard.css';
 
 const imgUrl = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/`;
 
-const PokemonCard = React.forwardRef(( {pokemon}, ref) => {
+const PokemonCard = React.forwardRef(( {pokemon, click}, ref) => {
 
 
     //Transforms a number to a 3 digit number: 3 => 003; 23 => 023;
@@ -22,20 +21,18 @@ const PokemonCard = React.forwardRef(( {pokemon}, ref) => {
     ))
     
     return(
-        <Link to={`/pokemon/${pokemon.name}`}>
-            <div ref={ref} className={`PokemonCard ${pokemon.types[0].type.name}`}>
-            
-                <img src={`${imgUrl}${imgNumber}.png`} alt={pokemon.name} />
-                <div className="info">
-                    <div className="name">{pokemon.name}</div>
-                    <div>#{TransfromDigit(pokemon.id)}</div>
-                </div>
-                <div className="types">
-                    {types}
-                </div>
+        <div ref={ref} className={`PokemonCard ${pokemon.types[0].type.name}`} onClick={click}>
                 
+            <img src={`${imgUrl}${imgNumber}.png`} alt={pokemon.name} />
+            <div className="info">
+                <div className="name">{pokemon.name}</div>
+                <div>#{TransfromDigit(pokemon.id)}</div>
             </div>
-        </Link>
+            <div className="types">
+                {types}
+            </div>
+            
+        </div>
     )
 })
 
