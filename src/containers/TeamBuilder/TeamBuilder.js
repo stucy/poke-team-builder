@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import axios from 'axios';
 
 import TeamMember from '../../components/TeamMember/TeamMember';
 import MemberInfo from '../../components/MemberInfo/MemberInfo';
@@ -12,12 +11,42 @@ import PokeballImg from '../../images/pokeballBG.svg';
 import PokeballIcon from '../../images/pokeballIcon.svg';
 
 const emptyTeam = [
-    {active: true, name: null, id: null, hp: null},
-    {active: false, name: null, id: null, hp: null},
-    {active: false, name: null, id: null, hp: null},
-    {active: false, name: null, id: null, hp: null},
-    {active: false, name: null, id: null, hp: null},
-    {active: false, name: null, id: null, hp: null},
+{active: true, name: null, id: null, stats: [], allMoves: [], selectedMoves: [
+    {active: true, name: null},
+    {active: false, name: null},
+    {active: false, name: null},
+    {active: false, name: null}
+]},
+{active: false, name: null, id: null, stats: [], allMoves: [], selectedMoves: [
+    {active: true, name: null},
+    {active: false, name: null},
+    {active: false, name: null},
+    {active: false, name: null}
+]},
+{active: false, name: null, id: null, stats: [], allMoves: [], selectedMoves: [
+    {active: true, name: null},
+    {active: false, name: null},
+    {active: false, name: null},
+    {active: false, name: null}
+]},
+{active: false, name: null, id: null, stats: [], allMoves: [], selectedMoves: [
+    {active: true, name: null},
+    {active: false, name: null},
+    {active: false, name: null},
+    {active: false, name: null}
+]},
+{active: false, name: null, id: null, stats: [], allMoves: [], selectedMoves: [
+    {active: true, name: null},
+    {active: false, name: null},
+    {active: false, name: null},
+    {active: false, name: null}
+]},
+{active: false, name: null, id: null, stats: [], allMoves: [], selectedMoves: [
+    {active: true, name: null},
+    {active: false, name: null},
+    {active: false, name: null},
+    {active: false, name: null}
+]},
 ];
 
 const url = "https://pokeapi.co/api/v2/pokemon/";
@@ -45,20 +74,22 @@ const App = () => {
                                 teamPlace={index}
                                 remove={setTeam}
                                 setActive={setActiveMember}
-                                activeMember={activeMember} 
+                                activeMember={activeMember}
                             />
                 })}
             </div>
             <div className="PokemonInfo">
 
                 <img className="PokeballBG" src={PokeballImg} alt="Pokeball" />
-                <MemberInfo data={team[activeMember]}/>
+                <MemberInfo data={team[activeMember]} open={() => setIsOpen2(true)} setTeam={setTeam}
+                activeMember={activeMember}/>
                 
             </div>
 
             <Modal close={() => setIsOpen(false)} open={isOpen} >
                 <PokemonSearch setMember={setTeam} activeMember={activeMember}/>
             </Modal>
+
         </div>
     );
 }

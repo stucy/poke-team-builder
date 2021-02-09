@@ -1,13 +1,10 @@
 import React from 'react';
 
-import Aux from "../../../hoc/Aux";
-
 import './MemberMove.css';
 
-const TeamMember = ({data}) => {
+const TeamMember = ({data, open, setActiveMove}) => {
     // console.log(data);
-
-    // data.name = null;
+    // console.log(allMoves)
 
     let classes = `MemberMove `;
     if(data.name == null){
@@ -17,16 +14,11 @@ const TeamMember = ({data}) => {
         classes += `${data.type} move`;
     }
 
-    return (
-        <div className={classes}>
-            {data.name == null ? null :
-                <Aux>
-                    <div className="moveName">{data.name}</div>
-                    <div className="movePP">{data.pp} PP</div>
-                </Aux>
-            }
-        </div>
-    );
+    return <div className={classes} onClick={() => {
+        if(data.active)
+            open(true);
+        setActiveMove();
+    }}>{data.name}</div>
 }
 
 export default TeamMember;

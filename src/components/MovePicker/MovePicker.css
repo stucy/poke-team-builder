@@ -1,0 +1,77 @@
+.MovePicker{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 300px;
+  width: 300px;
+  padding: 20px;
+}
+
+.MovePicker h2{
+  margin-bottom: 10px;
+}
+
+#myInput {
+  box-sizing: border-box;
+  background-position: 14px 12px;
+  background-repeat: no-repeat;
+  font-size: 16px;
+  padding: 14px 20px 12px 45px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  width: 100%;
+}
+
+.dropdownBtn{
+  background-color: #f6f6f6;
+  padding: 10px;
+  width: 250px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+#myInput:focus {outline: 3px solid #ddd;}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.moveBtn{
+  margin-top: auto;
+  width: 200px;
+  padding: 8px 20px;
+  border-radius: 25px;
+  outline: none;
+  border: none;
+  background-color: #e22222;
+  cursor: pointer;
+  color: white;
+}
+
+.moveBtn:hover{
+  background-color: #d22222;
+}
+
+.dropdown-content {
+  display: none;
+  background-color: #f6f6f6;
+  min-width: 230px;
+  overflow: auto;
+  border: 1px solid #ddd;
+  z-index: 1;
+  max-height: 180px;
+  position: absolute;
+}
+
+.dropdown-content span {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-transform: capitalize;
+}
+
+.dropdown span:hover {background-color: #ddd;}
+
+.show {display: block;}

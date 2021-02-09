@@ -60,6 +60,11 @@
     text-align: right;
     text-transform: capitalize;
     width: 50px;
+    margin-top: 0px;
+}
+
+.statNumber {
+    width: 25px;
 }
 
 .typesContainer .dataContainer{
@@ -135,3 +140,9 @@
     font-size: 10px;
 }
 
+.moveContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

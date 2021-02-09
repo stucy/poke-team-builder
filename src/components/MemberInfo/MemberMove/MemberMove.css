@@ -7,6 +7,7 @@
     margin-bottom: 10px;
     position: relative;
     display: flex;
+    text-transform: capitalize;
 }
 
 .MemberMove:hover{
@@ -37,9 +38,11 @@
 }
 
 .MemberMove.move{
-    color: white;
+    color: black;
     font-size: 22px;
     align-items: center;
+    border: none;
+    justify-content: center;
 }
 
 .moveName {

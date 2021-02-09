@@ -26,6 +26,8 @@ const TeamMember = ({data, open, remove, teamPlace, setActive, activeMember}) =>
             if(data.name == null && data.active){
                 setActive(teamPlace);
                 open();
+            }else if(data.name != null && data.active){
+                setActive(teamPlace);
             }
 
         }}>
@@ -36,13 +38,15 @@ const TeamMember = ({data, open, remove, teamPlace, setActive, activeMember}) =>
                     <div className="TeamMemberInfo">
                         <span>{data.name}</span>
                         <span className="PokemonHealthBar"></span>
-                        <span>{data.hp}/{data.hp}</span>
+                        <span>{data.stats[0].base_stat}/{data.stats[0].base_stat}</span>
                         <span className="removeMember" onClick={() => {
                             remove(prevState => {
 
                                 prevState[teamPlace].name = null;
                                 prevState[teamPlace].id = null;
-                                prevState[teamPlace].hp = null;
+                                prevState[teamPlace].stats = [];
+                                prevState[teamPlace].allMoves = [];
+                                prevState[teamPlace].selectedMoves = [];
                                 prevState[teamPlace].active = false;
 
                                 if(teamPlace == 5)
@@ -51,14 +55,18 @@ const TeamMember = ({data, open, remove, teamPlace, setActive, activeMember}) =>
                                 for(let i = teamPlace; i < prevState.length - 1; i++){
                                     prevState[i].active = prevState[i+1].active;
                                     prevState[i].id = prevState[i+1].id;
-                                    prevState[i].hp = prevState[i+1].hp;
+                                    prevState[i].stats = prevState[i+1].stats;
+                                    prevState[i].allMoves = prevState[i+1].allMoves;
+                                    prevState[i].selectedMoves = prevState[i+1].selectedMoves;
                                     prevState[i].name = prevState[i+1].name;
                                 }
 
                                 if(prevState[5].name != null){
                                     prevState[5].name = null;
                                     prevState[5].id = null;
-                                    prevState[5].hp = null;
+                                    prevState[5].stats = [];
+                                    prevState[5].allMoves = [];
+                                    prevState[5].selectedMoves = [];
                                     prevState[5].active = true;
                                 }
 
