@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Aux from "../../hoc/Aux";
+import Auxiliary from "../../hoc/Auxiliary";
 
 import './TeamMember.css';
 
@@ -33,7 +33,7 @@ const TeamMember = ({data, open, remove, teamPlace, setActive, activeMember}) =>
         }}>
             {data.name == null ? null :
                 
-                <Aux>
+                <Auxiliary>
                     <img className="MemberImg" src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${imgNumber}.png`} />
                     <div className="TeamMemberInfo">
                         <span>{data.name}</span>
@@ -80,7 +80,7 @@ const TeamMember = ({data, open, remove, teamPlace, setActive, activeMember}) =>
                             setActive(place);
                         }}>x</span>
                     </div>
-                </Aux>
+                </Auxiliary>
             }
         </div>
     );

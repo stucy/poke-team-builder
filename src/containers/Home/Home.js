@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ProductInfo from '../../components/ProductInfo/ProductInfo';
-import Aux from '../../hoc/Aux';
+import Auxiliary from '../../hoc/Auxiliary';
 
 import './Home.css';
 
@@ -24,7 +24,7 @@ const product2 = {
 }
 
 const Home = () => (
-    <Aux>
+    <Auxiliary>
         <div className="HomeAbout">
             <h1>About</h1>
             <p>This is a web app made for educational purposes. I do not own the images or data that are being used. The functionalities below are made for practice with React.js and API calls.</p>
@@ -34,7 +34,7 @@ const Home = () => (
         </div>
         <ProductInfo img={product1.img} text={product1.text} title={product1.title} orientation={product1.orientation} to={'/pokedex'}/>
         <ProductInfo img={product2.img} text={product2.text} title={product2.title} orientation={product2.orientation} to={'/team-builder'}/>
-    </Aux>
+    </Auxiliary>
 );
 
 export default Home;

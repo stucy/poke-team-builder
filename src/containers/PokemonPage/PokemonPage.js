@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import "./PokemonPage.css";
 import Loader from '../../components/Loader/Loader';
-import Aux from '../../hoc/Aux';
+import Auxiliary from '../../hoc/Auxiliary';
 
 const url1 = "https://pokeapi.co/api/v2/pokemon";
 const url2 = "https://pokeapi.co/api/v2/pokemon-species";
@@ -44,7 +44,7 @@ const PokemonPage = () => {
         <div className="PokemonPage">
            {loading ? <Loader /> 
            :
-            <Aux>
+            <Auxiliary>
                 <div>
                     <span className="name">{`${name} `}</span>
                     is a 
@@ -114,7 +114,7 @@ const PokemonPage = () => {
                         </div>
                     </div>
                 </div>
-            </Aux>
+            </Auxiliary>
             }
         </div>
     )

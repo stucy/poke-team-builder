@@ -1,15 +1,15 @@
 import React from 'react';
 
-import Aux from '../Aux';
+import Auxiliary from '../Auxiliary';
 import Header from '../../components/Header/Header';
 
 const Layout = ({children}) => {
 
     return (
-            <Aux>
+            <Auxiliary>
                 <Header/>
                 {children}
-            </Aux>
+            </Auxiliary>
         )
 };
 

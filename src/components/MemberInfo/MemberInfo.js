@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Carousel from 'react-elastic-carousel';
 
 import MemberMove from './MemberMove/MemberMove';
-import Aux from '../../hoc/Aux';
+import Auxiliary from '../../hoc/Auxiliary';
 import Modal from '../../hoc/Modal/Modal';
 import MovePicker from '../../components/MovePicker/MovePicker';
 
@@ -22,7 +22,7 @@ const MemberInfo = ({data, activeMember, setTeam}) => {
     let imgNumber = TransfromDigit(data.id);
 
     return (
-        <Aux>
+        <Auxiliary>
         { data.name ?
         <div className="MemberInfo">
             <img className="InfoImg" src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${imgNumber}.png`} />
@@ -88,7 +88,7 @@ const MemberInfo = ({data, activeMember, setTeam}) => {
             <Modal close={() => setIsOpen(false)} open={isOpen} >
                 <MovePicker allMoves={data.allMoves} activeMember={activeMember} setTeam={setTeam} activeMove={activeMove} close={() => setIsOpen(false)}/>
             </Modal>
-        </Aux>
+        </Auxiliary>
     );
 }
 

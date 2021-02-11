@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Backdrop from '../Backdrop/Backdrop';
-import Aux from '../Aux';
+import Auxiliary from '../Auxiliary';
 
 import './Modal.css';
 
@@ -13,13 +13,13 @@ const Modal = ({children, open, close}) => {
 
     //Renders it using react portals so that there arent any elements that go above its backdrop
     return ReactDOM.createPortal(
-       <Aux>
+       <Auxiliary>
            <Backdrop close={close}/>
            <div className="Modal">
                <span className="close-modal" onClick={() => close()}>X</span>
                 {children}
             </div>
-       </Aux>,
+       </Auxiliary>,
        document.getElementById('portal')
     )
 };

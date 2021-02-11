@@ -1,4 +1,4 @@
 //Used for encapsulating elements that do not need a parent for styling
-const Aux = ({children}) => children;
+const Auxiliary = ({children}) => children;
 
-export default Aux;
+export default Auxiliary;

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
 import Filters from '../../components/Filters/Filters';
-import Aux from '../../hoc/Aux';
+import Auxiliary from '../../hoc/Auxiliary';
 import Loader from '../../components/Loader/Loader';
 
 import './Pokedex.css';
@@ -328,7 +328,7 @@ const Pokedex = () =>{
     });
 
     return(
-        <Aux>
+        <Auxiliary>
             <Filters 
                 active={filterActive} 
                 click={setFilterActive}
@@ -349,7 +349,7 @@ const Pokedex = () =>{
                 <hr ref={lastEl}/>
                 {loading ? <Loader /> : null}
             </div>
-        </Aux>
+        </Auxiliary>
     )
 }
 
