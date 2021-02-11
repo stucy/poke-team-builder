@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    width: 80%;
+    width: 100%;
     margin: 40px auto;
 }
 
@@ -15,8 +15,8 @@
 }
 
 .ProductInfo img {
-    width: 300px;
-    height: 250px;
+    width: auto;
+    height: 200px;
     border-radius: 20px;
 }
 
@@ -41,4 +41,10 @@
     border: none;
     margin-top: 20px;
     text-align: center;
+}
+
+@media(max-width: 870px){
+    .ProductInfo.right{
+        flex-direction: row;
+    }
 }

@@ -84,32 +84,26 @@
     display: none !important;
 }
 
-.lgksPe,
-.iLquPE{
+.infoContainer button{
     box-shadow: none !important;
 }
 
-.lgksPe:hover,
-.iLquPE:hover{
+.infoContainer button:hover{
     background-color: transparent !important;
     border: none !important;
 }
 
-.lgksPe:active,
-.iLquPE:active{
+.infoContainer button:active{
     background-color: transparent !important;
     border: none !important;
 }
 
-.lgksPe:focus,
-.iLquPE:focus{
+.infoContainer button:focus{
     background-color: transparent !important;
     border: none !important;
 }
 
-.tXlBS:focus,
-.galrjd:focus,
-.ewJlEB:focus{
+.infoContainer button:focus{
     outline: none !important;
     border: none !important;
 }

@@ -6,6 +6,7 @@ import Aux from '../../hoc/Aux';
 import './Home.css';
 
 import ProductImg1 from '../../images/product1.png';
+import ProductImg2 from '../../images/product2.png';
 
 //Hardcoded data for the components
 const product1 = {
@@ -16,7 +17,7 @@ const product1 = {
 }
 
 const product2 = {
-    img: ProductImg1,
+    img: ProductImg2,
     title: 'Team Builder',
     orientation: 'right',
     text: 'An app where you can build and design a team of your liking. You can choose a pokemon, its move set, abilitie and item.',
