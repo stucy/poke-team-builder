@@ -1,19 +1,29 @@
 .PokemonPage {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    height: 100%;
     padding: 20px 50px;
 }
 
-.pokePageInfo {
+.PokemonPage .pokePageInfo {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     padding: 0px 20px;
 }
 
-.PokemonPage .name {
-    text-transform: capitalize;
+.PokemonPage .pokePageInfo img {
+    width: 300px;
 }
 
-.pokePageInfo img {
-    width: 300px;
+@media(max-width: 670px){
+    
+    .PokemonPage .pokePageInfo{
+        flex-direction: column;
+    }
+
+    .PokemonPage .pokePageInfo img{
+        align-self: center;
+    }
+
 }

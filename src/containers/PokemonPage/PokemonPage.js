@@ -5,6 +5,7 @@ import axios from 'axios';
 import "./PokemonPage.css";
 import Loader from '../../components/Loader/Loader';
 import Auxiliary from '../../hoc/Auxiliary';
+import PokeData from '../../components/PokeData/PokeData';
 
 const url1 = "https://pokeapi.co/api/v2/pokemon";
 const url2 = "https://pokeapi.co/api/v2/pokemon-species";
@@ -35,86 +36,87 @@ const PokemonPage = () => {
             let data = res.map( ({data}) => data);
             setPokeData(data);
             setLoading(false)
+
         })
         .catch(err => console.log(err));
         
     }, []);
 
+    const types = pokeData[0] ? pokeData[0].types.map(({ type, slot }) => (
+        <div className={type.name} key={slot}>{type.name}</div>
+    )) : "";
+
+    console.log(types);
+
     return (
         <div className="PokemonPage">
-           {loading ? <Loader /> 
-           :
-            <Auxiliary>
-                <div>
-                    <span className="name">{`${name} `}</span>
-                    is a 
-                    {pokeData[0].types.length == 1 ? ` ${pokeData[0].types[0].type.name} `
-                    : ` ${pokeData[0].types[0].type.name}/${pokeData[0].types[1].type.name} `}
-                    pokemon.
-                </div>
-                <div className="pokePageInfo">
-                    <img src={`${imgUrl}/${TransfromDigit(pokeData[0].id)}.png`} />
-                    <div className="pokeData">
-                        <h2>Pokedex Data</h2>
-                        <div className="dataItem">
-                            <span className="dataTitle">№</span>
-                            <span className="dataText">{TransfromDigit(pokeData[0].id)}</span>
-                        </div>
-                        <div className="dataItem">
-                            <span className="dataTitle">Height</span>
-                            <span className="dataText">{pokeData[0].height}</span>
-                        </div>
-                        <div className="dataItem">
-                            <span className="dataTitle">Weight</span>
-                            <span className="dataText">{pokeData[0].weight}</span>
-                        </div>
-                        <div className="dataItem">
-                            <span className="dataTitle">Abilities</span>
-                            <span className="dataText">
-                                {pokeData[0].abilities.map( (el, index) => {
-                                    if(el.is_hidden){
-                                        return <div key={index} >{`${el.ability.name} (hidden ability)`}</div>
-                                    }
-                                    return <div key={index} >{`${index + 1}. ${el.ability.name}`}</div>
-                                })}
-                            </span>
-                        </div>
-                    </div>
-                    <div className="pokeData">
-                        <h2>Training</h2>
-                        <div className="dataItem">
-                            <span className="dataTitle">Catch Rate</span>
-                            <span className="dataText">{pokeData[1].capture_rate}</span>
-                        </div>
-                        <div className="dataItem">
-                            <span className="dataTitle">Base Friendship</span>
-                            <span className="dataText">{pokeData[1].base_happiness}</span>
-                        </div>
-                        <div className="dataItem">
-                            <span className="dataTitle">Base Exp</span>
-                            <span className="dataText">{pokeData[0].base_experience}</span>
-                        </div>
-                        <div className="dataItem">
-                            <span className="dataTitle">Growth Rate</span>
-                            <span className="dataText">{pokeData[1].growth_rate.name}</span>
-                        </div>
-                        <h2>Breeding</h2>
-                        <div className="dataItem">
-                            <span className="dataTitle">Egg Groups</span>
+            {loading ? <Loader /> 
+            :
+                <Auxiliary>
+                    <div className="pokePageInfo">
+                        <img src={`${imgUrl}/${TransfromDigit(pokeData[0].id)}.png`} />
+                        <PokeData pokemon={pokeData[0]} name={name} imgUrl={imgUrl} />
+                        {/* <div className="pokeData">
+                            <h2>Pokedex Data</h2>
+                            <div className="dataItem">
+                                <span className="dataTitle">№</span>
+                                <span className="dataText">{TransfromDigit(pokeData[0].id)}</span>
+                            </div>
+                            <div className="dataItem">
+                                <span className="dataTitle">Height</span>
+                                <span className="dataText">{pokeData[0].height}</span>
+                            </div>
+                            <div className="dataItem">
+                                <span className="dataTitle">Weight</span>
+                                <span className="dataText">{pokeData[0].weight}</span>
+                            </div>
+                            <div className="dataItem">
+                                <span className="dataTitle">Abilities</span>
                                 <span className="dataText">
-                                {pokeData[1].egg_groups.map( (el, index) => {
-                                    return <div key={index}>{el.name}</div>
-                                })}
-                                
-                            </span>
+                                    {pokeData[0].abilities.map( (el, index) => {
+                                        if(el.is_hidden){
+                                            return <div key={index} >{`${el.ability.name} (hidden ability)`}</div>
+                                        }
+                                        return <div key={index} >{`${index + 1}. ${el.ability.name}`}</div>
+                                    })}
+                                </span>
+                            </div>
                         </div>
-                        <div className="dataItem">
-                            <span className="dataTitle">Egg Cycles</span>
-                            <span className="dataText">{pokeData[1].hatch_counter}</span>
-                        </div>
+                        <div className="pokeData">
+                            <h2>Training</h2>
+                            <div className="dataItem">
+                                <span className="dataTitle">Catch Rate</span>
+                                <span className="dataText">{pokeData[1].capture_rate}</span>
+                            </div>
+                            <div className="dataItem">
+                                <span className="dataTitle">Base Friendship</span>
+                                <span className="dataText">{pokeData[1].base_happiness}</span>
+                            </div>
+                            <div className="dataItem">
+                                <span className="dataTitle">Base Exp</span>
+                                <span className="dataText">{pokeData[0].base_experience}</span>
+                            </div>
+                            <div className="dataItem">
+                                <span className="dataTitle">Growth Rate</span>
+                                <span className="dataText">{pokeData[1].growth_rate.name}</span>
+                            </div>
+                            <h2>Breeding</h2>
+                            <div className="dataItem">
+                                <span className="dataTitle">Egg Groups</span>
+                                    <span className="dataText">
+                                    {pokeData[1].egg_groups.map( (el, index) => {
+                                        return <div key={index}>{el.name}</div>
+                                    })}
+                                    
+                                </span>
+                            </div>
+                            <div className="dataItem">
+                                <span className="dataTitle">Egg Cycles</span>
+                                <span className="dataText">{pokeData[1].hatch_counter}</span>
+                            </div>
+                        </div> */}
                     </div>
-                </div>
-            </Auxiliary>
+                </Auxiliary>
             }
         </div>
     )
