@@ -104,13 +104,13 @@ const PokeData = ({ pokemon, name, imgUrl }) => {
                 <div className="pokeName">{name}</div>
                 <Carousel itemsToShow={1}>
                     <div>
-                        <Table data={initialTable}></Table>
+                        <Table data={initialTable} />
                     </div>
                     <div>
-                        <Table data={statsTable}></Table>
+                        <Table data={statsTable} />
                     </div>
                     <div>
-                        <Table data={moreInfoTable}></Table>
+                        <Table data={moreInfoTable} />
                     </div>
                 </Carousel>
             </div>
