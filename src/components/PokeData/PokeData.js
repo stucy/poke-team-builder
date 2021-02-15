@@ -1,9 +1,8 @@
 import React from 'react';
 import Carousel from 'react-elastic-carousel';
+import Table from "../../components/Table/Table";
 
 import "./PokeData.css";
-
-import "../../components/Table/Table";
 
 const PokeData = ({ pokemon, name, imgUrl }) => {
 
@@ -18,6 +17,13 @@ const PokeData = ({ pokemon, name, imgUrl }) => {
         <div className={type.name} key={slot}>{type.name}</div>
     ));
 
+    const initialTable = {
+        id: pokemon.id,
+        height: pokemon.height,
+        weight: pokemon.weight,
+        abilities: pokemon.abilities
+    };
+
     return (
         <div className="pokeData">
             <div className="pokeTitle">
@@ -27,42 +33,14 @@ const PokeData = ({ pokemon, name, imgUrl }) => {
                 </span>
                 <span className="tags">{types}</span>
             </div>
-            <Carousel itemsToShow={1}>
-                <div>
-                    <table className="pokeData-table">
-                        <thead>
-                            <tr>
-                                <td colSpan="2">{`${name}`}</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td className="tableTitle">No. </td>
-                                <td>#{TransfromDigit(pokemon.id)}</td>
-                            </tr>
-                            <tr>
-                                <td className="tableTitle">Height</td>
-                                <td>{pokemon.height} ft.</td>
-                            </tr>
-                            <tr>
-                                <td className="tableTitle">Weight</td>
-                                <td>{pokemon.weight} kg.</td>
-                            </tr>
-                            <tr>
-                                <td className="tableTitle">Abilities</td>
-                                <td>
-                                    {pokemon.abilities.map((el, index) => {
-                                        if (el.is_hidden) {
-                                            return <div key={index} >{`${el.ability.name} (hidden ability)`}</div>
-                                        }
-                                        return <div key={index} >{`${index + 1}. ${el.ability.name}`}</div>
-                                    })}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </Carousel>
+            <div className="tables">
+                <div className="pokeName">{name}</div>
+                <Carousel itemsToShow={1}>
+                    <div>
+                        <Table pokemon={initialTable}></Table>
+                    </div>
+                </Carousel>
+            </div>
         </div>
     )
 }

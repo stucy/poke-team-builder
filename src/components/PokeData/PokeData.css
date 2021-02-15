@@ -45,6 +45,19 @@
     border-radius: 17px;
 }
 
+.pokeData .tables{
+    display: flex;
+    flex-direction: column;
+}
+
+.pokeData .tables .pokeName{
+    padding: 12px;
+    text-align: center;
+    background-color: #F1F1F1;
+    text-transform: capitalize;
+    margin-bottom: 12px;
+}
+
 .pokeData .pokeData-table{
     width: 100%;
     border-collapse: collapse;
