@@ -79,6 +79,30 @@
     border-collapse: collapse;
 }
 
+.pokeData button{
+    box-shadow: none !important;
+}
+
+.pokeData button:hover{
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.pokeData button:active{
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.pokeData button:focus{
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.pokeData button:focus{
+    outline: none !important;
+    border: none !important;
+}
+
 @media(max-width: 670px){
 
     .pokeData .pokeTitle .tags{
