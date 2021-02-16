@@ -48,6 +48,7 @@
 .pokeData .tables{
     display: flex;
     flex-direction: column;
+    /* align-items: center; */
 }
 
 .pokeData .tables .pokeName{
@@ -114,6 +115,10 @@
 .pokeData button:focus{
     outline: none !important;
     border: none !important;
+}
+
+.rec-carousel-wrapper {
+    width: 400px !important;
 }
 
 @media(max-width: 670px){
