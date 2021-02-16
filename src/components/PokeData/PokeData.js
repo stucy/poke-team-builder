@@ -48,7 +48,7 @@ const PokeData = ({ pokemon, name, imgUrl }) => {
         },
         {
             title: "Evolves From",
-            value: capitalize(pokemon[1].evolves_from_species.name)
+            value: capitalize(pokemon[1].evolves_from_species?.name)
         },
         {
             title: "Base Happiness",
