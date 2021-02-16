@@ -52,7 +52,7 @@ const PokemonPage = () => {
             :
                 <Auxiliary>
                     <div className="pokePageInfo">
-                        <img style={{height: "60vh"}} src={`${imgUrl}/${TransfromDigit(pokeData[0].id)}.png`} />
+                        <img style={{height: "60vh", width: 'auto'}} src={`${imgUrl}/${TransfromDigit(pokeData[0].id)}.png`} />
                         <PokeData pokemon={pokeData} name={name} imgUrl={imgUrl} />
                     </div>
                 </Auxiliary>
