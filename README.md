@@ -1,5 +1,7 @@
 # poke-team-builder
 
+### Demo: [https://stucy.github.io/poke-team-builder/](https://stucy.github.io/poke-team-builder/)
+
 ## About: 
 
 - This is an web app using the pokemon API. The development of this app is for an educational purpose.
